@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <style>
+        html,
+        body {
+            background-color: #222;
+        }
+
+        .box {
+            width: 100px;
+            background-color: dimgrey;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        .light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 10px auto;
+            opacity: 0.1;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .green {
+            background: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-offset-4 col-2 pull-right">
+                <div class="box">
+                    <div class="red light" id="redlight"></div>
+                    <div class="yellow light" id="yellowlight"></div>
+                    <div class="green light" id="greenlight"></div>
+                </div>
+            </div>
+            <div class="buttons col-2">
+                <button class="btn btn-lg btn-success col-12 mt-5" id="go">
+                    Go!
+                </button>
+                <button class="btn btn-lg btn-danger col-12 mt-5" id="stop">
+                    Stop!
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    //$("#greenlight").css("opacity"); - zemame opacity
+    //$("#greenlight").css("opacity", 1); - menuvame opacity
+
+    //f-ja sto dodava event listener
+    $("#go").click(function () {
+        if ($("#greenlight").css("opacity") != 1) {
+            // $("#redlight").animate({ opacity: "1" }, 500, function () {
+            //     $("#yellowlight").animate({ opacity: "1" }, 500, function () {
+            //         $("#redlight").animate({ opacity: "0.1" }, 500);
+            //         $("#yellowlight").animate({ opacity: "0.1" }, 500, function () {
+            //             $("#greenlight").animate({ opacity: "1" }, 500);
+            //         });
+            //     });
+            // });
+            $("#redlight").animate({ opacity: "1" }, 500).delay(500).animate({ opacity: "0.1" }, 500);
+            $("#yellowlight").delay(500).animate({ opacity: "1" }, 500).animate({ opacity: "0.1" }, 500);
+            $("#greenlight").delay(1500).animate({ opacity: "1" }, 500);
+        }
+    });
+
+    //explanation
+    //those are same
+
+    // $("#greenlight")
+    //   .animate({ opacity: "1" }, 500)
+    //   .animate({ opacity: "0.1" }, 500);
+
+    // $("#greenlight").animate({ opacity: "1" }, 500, function() {
+    //   $("#greenlight").animate({ opacity: "0.1" }, 500);
+    // });
+
+    $("#stop").click(function () {
+        if ($("#redlight").css("opacity") != 1) {
+            // $("#greenlight").animate({ opacity: "1" }, 500, function() {
+            //   $("#greenlight").animate({ opacity: "0.1" }, 500, function() {
+            //     $("#yellowlight").animate({ opacity: "1" }, 500, function() {
+            //       $("#yellowlight").animate({ opacity: "0.1" }, 500, function() {
+            //         $("#redlight").animate({ opacity: "1" }, 500);
+            //       });
+            //     });
+            //   });
+            // });
+
+            //     $("#greenlight")
+            //         .animate({ opacity: "1" }, 500)
+            //         .animate({ opacity: "0.1" }, 500, function () {
+            //             $("#yellowlight")
+            //                 .animate({ opacity: "1" }, 500)
+            //                 .animate({ opacity: "0.1" }, 500, function () {
+            //                     $("#redlight").animate({ opacity: "1" }, 500);
+            //                 });
+            //         });
+            $("#greenlight").animate({ opacity: "1" }, 500).animate({ opacity: "0.1" }, 500);
+            $("#yellowlight").delay(1000).animate({ opacity: "1" }, 500).animate({ opacity: "0.1" }, 500);
+            $("#redlight").delay(2000).animate({ opacity: "1" }, 500);
+
+        }
+
+    });
+</script>
+
+</html>
